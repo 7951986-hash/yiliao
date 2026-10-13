@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Consultation {
+  id                 String   @id @default(cuid())
+  name               String
+  email              String
+  country            String
+  whatsapp           String?
+  medicalSpecialty   String
+  briefRequest       String
+  locale             String
+  consultationType   String
+  landingPage        String?
+  referrer           String?
+  utmSource          String?
+  utmMedium          String?
+  utmCampaign        String?
+  privacyConsentAt   DateTime
+  status             String   @default("new")
+  notificationStatus String   @default("pending")
+  ipHash             String?
+  createdAt          DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([ipHash, createdAt])
+}

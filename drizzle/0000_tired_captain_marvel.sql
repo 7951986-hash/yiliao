@@ -1,0 +1,21 @@
+CREATE TABLE `consultations` (
+	`id` text PRIMARY KEY NOT NULL,
+	`name` text NOT NULL,
+	`email` text NOT NULL,
+	`country` text NOT NULL,
+	`whatsapp` text,
+	`medical_specialty` text NOT NULL,
+	`brief_request` text NOT NULL,
+	`locale` text NOT NULL,
+	`consultation_type` text NOT NULL,
+	`landing_page` text,
+	`referrer` text,
+	`utm_source` text,
+	`utm_medium` text,
+	`utm_campaign` text,
+	`privacy_consent_at` integer NOT NULL,
+	`status` text DEFAULT 'new' NOT NULL,
+	`notification_status` text DEFAULT 'pending' NOT NULL,
+	`ip_hash` text,
+	`created_at` integer NOT NULL
+);

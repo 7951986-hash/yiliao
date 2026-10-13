@@ -1,0 +1,3 @@
+import type { MetadataRoute } from "next";
+const routes = ["", "/zh/", "/privacy-policy", "/terms-of-service", "/medical-disclaimer", "/zh/privacy-policy", "/zh/terms-of-service", "/zh/medical-disclaimer"];
+export default function sitemap(): MetadataRoute.Sitemap { const base=process.env.NEXT_PUBLIC_SITE_URL ?? "https://shanghai-medical-concierge.tangycream256.chatgpt.site"; return routes.map(route=>({url:new URL(route||"/",base).toString(),lastModified:new Date("2026-10-13"),changeFrequency:route.includes("policy")||route.includes("terms")||route.includes("disclaimer")?"yearly":"weekly",priority:route===""?1:route==="/zh/"?0.9:0.4})); }
