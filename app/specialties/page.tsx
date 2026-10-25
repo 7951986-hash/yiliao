@@ -1,0 +1,2 @@
+import type {Metadata} from "next";import {SpecialtiesPage} from "@/components/site/specialties-page";
+export const metadata:Metadata={title:"Shanghai Medical Specialties",description:"Find leading Shanghai hospitals, departments and specialists by treatment field.",alternates:{canonical:"/specialties",languages:{en:"/specialties","zh-CN":"/zh/specialties","x-default":"/specialties"}}};export default function Page(){return <SpecialtiesPage locale="en"/>}

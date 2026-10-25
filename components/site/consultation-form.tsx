@@ -25,10 +25,10 @@ export function ConsultationForm({ copy, compact = false }: { copy: SiteCopy; co
       <h2 className="mt-2 font-serif text-2xl font-semibold leading-tight text-[#12304A] sm:text-3xl">{copy.form.title}</h2>
       <p className="mt-2 text-sm leading-6 text-slate-500">{copy.form.body}</p>
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
-        <Input name="name" label={copy.form.name} required />
-        <Input name="email" type="email" label={copy.form.email} required />
-        <Input name="country" label={copy.form.country} required />
-        <Input name="whatsapp" label={copy.form.whatsapp} />
+        <Input name="name" label={copy.form.name} autoComplete="name" required />
+        <Input name="email" type="email" label={copy.form.email} autoComplete="email" required />
+        <Input name="country" label={copy.form.country} autoComplete="country-name" required />
+        <Input name="whatsapp" type="tel" label={copy.form.whatsapp} autoComplete="tel" />
         <label className="sm:col-span-2"><span className="sr-only">{copy.form.specialty}</span><select name="medicalSpecialty" required defaultValue="" className="form-control"><option value="" disabled>{copy.form.specialty}</option>{medicalNeeds.map(item => <option key={item}>{item}</option>)}</select></label>
         {!compact && <label className="sm:col-span-2"><span className="sr-only">{copy.form.request}</span><textarea name="briefRequest" required maxLength={1200} rows={4} placeholder={copy.form.request} className="form-control resize-none" /></label>}
         {compact && <input type="hidden" name="briefRequest" value="Initial homepage enquiry" />}
@@ -41,6 +41,6 @@ export function ConsultationForm({ copy, compact = false }: { copy: SiteCopy; co
   );
 }
 
-function Input({ name, label, type = "text", required = false }: { name: string; label: string; type?: string; required?: boolean }) {
-  return <label><span className="sr-only">{label}</span><input className="form-control" name={name} type={type} required={required} placeholder={label}/></label>;
+function Input({ name, label, type = "text", autoComplete, required = false }: { name: string; label: string; type?: string; autoComplete?: string; required?: boolean }) {
+  return <label><span className="sr-only">{label}</span><input className="form-control" name={name} type={type} autoComplete={autoComplete} required={required} placeholder={label}/></label>;
 }

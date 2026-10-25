@@ -11,8 +11,8 @@ const pages = {
     zh: ["服务条款", "本网站提供一般信息和非临床协调服务。任何收费服务开始前，双方应另行确认书面服务范围和报价。", ["是否接诊、专家是否有号及治疗时间由相关医疗机构决定。", "医院医疗费与平台服务费相互独立。", "用户应提供真实信息，并与合格医生共同作出医疗决定。", "本网站内容不建立医院、医患或保险关系。"]],
   },
   disclaimer: {
-    en: ["Medical Disclaimer", "Shanghai Medical Concierge is not a hospital, clinic, insurer or diagnostic service. Website content is general information and is not medical advice.", ["We do not diagnose conditions, prescribe treatment or guarantee outcomes.", "We do not guarantee access to a named specialist, hospital bed or surgery date.", "Medical decisions and final prices are provided by licensed hospitals and physicians.", "For an emergency, contact local emergency services immediately."]],
-    zh: ["医疗免责声明", "Shanghai Medical Concierge 不是医院、诊所、保险机构或诊断服务。本网站内容仅为一般信息，不构成医疗建议。", ["我们不进行诊断、不开具治疗方案，也不保证治疗结果。", "我们不保证指定专家号源、住院床位或手术日期。", "医疗决定及最终价格由持牌医院和医生提供。", "如遇紧急情况，请立即联系所在地急救服务。"]],
+    en: ["Medical Disclaimer", "MedVia China is not a hospital, clinic, insurer or diagnostic service. Website content is general information and is not medical advice.", ["We do not diagnose conditions, prescribe treatment or guarantee outcomes.", "We do not guarantee access to a named specialist, hospital bed or surgery date.", "Medical decisions and final prices are provided by licensed hospitals and physicians.", "For an emergency, contact local emergency services immediately."]],
+    zh: ["医疗免责声明", "MedVia China 不是医院、诊所、保险机构或诊断服务。本网站内容仅为一般信息，不构成医疗建议。", ["我们不进行诊断、不开具治疗方案，也不保证治疗结果。", "我们不保证指定专家号源、住院床位或手术日期。", "医疗决定及最终价格由持牌医院和医生提供。", "如遇紧急情况，请立即联系所在地急救服务。"]],
   },
 } as const;
 

@@ -1,0 +1,21 @@
+import { ArrowRight } from "lucide-react";
+import { Header } from "./header";
+import { Footer } from "./home-page";
+import { content, type Locale } from "@/lib/site-content";
+
+const items=[
+  ["oncology","肿瘤诊疗","Cancer care","乳腺、肺部、消化系统及复杂肿瘤","Breast, lung, digestive and complex cancers","肿瘤内科 · 外科 · 放疗 · 病理","Oncology · Surgery · Radiotherapy · Pathology"],
+  ["cardiovascular-neurology","心脑血管","Heart and brain","冠心病、心律失常与脑血管疾病","Coronary, rhythm and cerebrovascular conditions","心内科 · 心外科 · 神经内外科","Cardiology · Cardiac surgery · Neurology"],
+  ["orthopaedics-sports-medicine","骨科与运动医学","Orthopaedics","关节、脊柱、创伤与运动损伤","Joint, spine, trauma and sports injuries","骨科 · 运动医学 · 康复医学","Orthopaedics · Sports medicine · Rehabilitation"],
+  ["digestive-hepatobiliary","消化与肝胆","Digestive and liver","胃肠、肝脏、胰腺及复杂消化疾病","Gastrointestinal, liver, pancreatic and biliary care","消化科 · 肝外科 · 胆胰外科","Gastroenterology · Liver surgery · HPB surgery"],
+  ["ophthalmology-ent","眼科与五官","Eye and ENT","眼底、角膜、听力及头颈疾病","Retinal, corneal, hearing and head-and-neck care","眼科 · 耳鼻喉科 · 头颈外科","Ophthalmology · ENT · Head and neck surgery"],
+  ["women-children-fertility","妇儿与生殖","Women, children and fertility","妇科、产科、生殖及儿童专科","Gynaecology, fertility and paediatric care","妇产科 · 生殖医学 · 儿科","OB-GYN · Reproductive medicine · Paediatrics"],
+  ["dermatology-reconstruction","皮肤与整复","Skin and reconstruction","疑难皮肤病、创面及功能重建","Complex skin conditions, wounds and reconstruction","皮肤科 · 整复外科 · 烧伤科","Dermatology · Plastic surgery · Burn care"],
+  ["tcm-rehabilitation","中医与康复","TCM and rehabilitation","慢病管理、针灸及术后康复","Chronic care, acupuncture and recovery support","中医科 · 针灸科 · 康复医学","TCM · Acupuncture · Rehabilitation"],
+  ["dental-maxillofacial","口腔与颌面","Dental and maxillofacial","种植、修复、正畸及颌面疾病","Implants, restoration, orthodontics and maxillofacial care","口腔科 · 种植科 · 颌面外科","Dentistry · Implant dentistry · Maxillofacial surgery"],
+  ["respiratory-thoracic","呼吸与胸部疾病","Respiratory and thoracic","肺部疾病、胸部肿瘤及呼吸问题","Lung disease, thoracic tumours and respiratory conditions","呼吸科 · 胸外科 · 肺部肿瘤科","Respiratory medicine · Thoracic surgery · Pulmonary oncology"],
+  ["urology-kidney","泌尿与肾脏","Urology and kidney","泌尿系统、男性健康及肾脏疾病","Urinary, men's health and kidney conditions","泌尿外科 · 肾内科 · 男科","Urology · Nephrology · Andrology"],
+  ["endocrinology-hematology","内分泌与血液","Endocrine and blood","糖尿病、甲状腺及血液系统疾病","Diabetes, thyroid and haematological conditions","内分泌科 · 血液科 · 甲状腺外科","Endocrinology · Haematology · Thyroid surgery"],
+] as const;
+
+export function SpecialtiesPage({locale}:{locale:Locale}){const zh=locale==="zh";return <><Header copy={content[locale]}/><main className="bg-[#f5f8f8]"><section className="mx-auto max-w-[1200px] px-5 py-20 sm:px-7 lg:px-8 lg:py-24"><div className="mx-auto max-w-[820px] text-center"><p className="eyebrow">{zh?"医疗专科频道":"Medical specialties"}</p><h1 className="section-title mx-auto mt-3">{zh?"按治疗方向匹配上海优势专科":"Find Shanghai departments by treatment field"}</h1><p className="mx-auto mt-5 max-w-[68ch] text-[15px] leading-7 text-slate-600">{zh?"先从治疗方向进入，再查看相关医院、优势科室和代表专家。最终科室选择由医院结合病历资料确认。":"Start with a treatment field, then review relevant hospitals, departments and specialists. The hospital confirms the final clinical route after reviewing the records."}</p></div><div className="mt-12 grid overflow-hidden rounded-[28px] border border-slate-200 bg-white md:grid-cols-2 xl:grid-cols-3">{items.map((item,index)=><article id={item[0]} key={item[0]} className="group min-h-64 border-b border-slate-200 p-7 md:border-r xl:[&:nth-child(3n)]:border-r-0 xl:[&:nth-last-child(-n+3)]:border-b-0"><div className="flex items-center justify-between"><span className="text-xs font-bold text-[#0F8F8A]">{String(index+1).padStart(2,"0")}</span><ArrowRight size={17} className="text-[#0F8F8A]"/></div><h2 className="mt-8 font-serif text-2xl font-bold text-[#12304A]">{zh?item[1]:item[2]}</h2><p className="mt-3 text-sm leading-6 text-slate-600">{zh?item[3]:item[4]}</p><p className="mt-5 text-xs leading-5 text-slate-400">{zh?item[5]:item[6]}</p><a href="mailto:support@medviachina.com" className="mt-7 inline-flex items-center gap-2 text-xs font-semibold text-[#0F8F8A]">{zh?"咨询相关医院与专家":"Ask about hospitals and specialists"}<ArrowRight size={14}/></a></article>)}</div></section></main><Footer locale={locale}/></>}

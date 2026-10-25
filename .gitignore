@@ -54,3 +54,18 @@ next-env.d.ts
 /.codex/
 /outputs/
 /work/
+
+# Local audit and generated cache files.
+/audit-*.png
+/tsconfig.tsbuildinfo
+/xlsx-read/
+/doctor-sheet.webp
+/hospital-sheet.webp
+
+# Keep optimized web assets in Git; exclude unused source variants.
+/public/images/hospitals/*.jpg
+/public/images/hospitals/*.new
+/public/images/hospitals/*.new2
+/public/images/doctors/*.source
+/public/images/shanghai-medical-concierge-hero-mobile.png
+/public/images/shanghai-support/*.png
