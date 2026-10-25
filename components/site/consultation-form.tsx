@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, LockKeyhole } from "lucide-react";
+import { ArrowRight, LockKeyhole, Mail, MessageCircle } from "lucide-react";
 import type { SiteCopy } from "@/lib/site-content";
 import { medicalNeeds } from "@/lib/site-content";
 
 export function ConsultationForm({ copy, compact = false }: { copy: SiteCopy; compact?: boolean }) {
-  const [state, setState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [state, setState] = useState<"idle" | "loading" | "success" | "error" | "unavailable">("idle");
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setState("loading");
@@ -15,6 +15,7 @@ export function ConsultationForm({ copy, compact = false }: { copy: SiteCopy; co
     const params = new URLSearchParams(window.location.search);
     try {
       const response = await fetch("/api/consultations", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ ...data, privacyConsent: data.privacyConsent === "on", locale: copy.locale, consultationType: compact ? "hero" : "full", landingPage: window.location.pathname, referrer: document.referrer || null, utmSource: params.get("utm_source"), utmMedium: params.get("utm_medium"), utmCampaign: params.get("utm_campaign") }) });
+      if (response.status === 503) { setState("unavailable"); return; }
       if (!response.ok) throw new Error("submission failed");
       setState("success"); form.reset();
     } catch { setState("error"); }
@@ -36,7 +37,11 @@ export function ConsultationForm({ copy, compact = false }: { copy: SiteCopy; co
       </div>
       <label className="mt-4 flex items-start gap-3 text-xs leading-5 text-slate-500"><input name="privacyConsent" required type="checkbox" className="mt-1 accent-[#0F8F8A]"/><span>{copy.form.consent}</span></label>
       <button disabled={state === "loading"} className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#0F8F8A] px-5 text-sm font-bold text-white transition hover:bg-[#087b77] disabled:opacity-60">{state === "loading" ? copy.form.submitting : copy.form.submit}<ArrowRight size={16}/></button>
-      <div aria-live="polite" className="min-h-6 pt-3 text-center text-xs"><span className="inline-flex items-center gap-1 text-slate-400"><LockKeyhole size={12}/>{state === "success" ? copy.form.success : state === "error" ? copy.form.error : copy.locale === "zh" ? "您的信息将仅用于回复本次咨询。" : "Your details are used only to respond to this enquiry."}</span></div>
+      <div aria-live="polite" className="min-h-6 pt-3 text-center text-xs"><span className="inline-flex items-center gap-1 text-slate-400"><LockKeyhole size={12}/>{state === "success" ? copy.form.success : state === "error" ? copy.form.error : state === "unavailable" ? (copy.locale === "zh" ? "在线提交暂不可用，请通过邮件或 WhatsApp 联系我们。" : "Online submission is temporarily unavailable. Please contact us by email or WhatsApp.") : copy.locale === "zh" ? "您的信息将仅用于回复本次咨询。" : "Your details are used only to respond to this enquiry."}</span></div>
+      {state === "unavailable" && <div className="mt-2 grid grid-cols-2 gap-2">
+        <a href="mailto:support@medviachina.com" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#12304A]/20 text-xs font-bold text-[#12304A]"><Mail size={14}/>{copy.locale === "zh" ? "发送邮件" : "Email us"}</a>
+        <a href="https://wa.me/8619858146860" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#0F8F8A]/30 text-xs font-bold text-[#0b817c]"><MessageCircle size={14}/>WhatsApp</a>
+      </div>}
     </form>
   );
 }

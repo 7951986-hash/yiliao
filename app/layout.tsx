@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://medviachina.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.medviachina.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "MedVia China",
     type: "website",
-    images: [{ url: "/images/shanghai-medical-concierge-hero.png", width: 1536, height: 1024, alt: "MedVia China medical coordination in Shanghai" }],
+    images: [{ url: "/images/shanghai-medical-concierge-hero.webp", width: 1536, height: 1024, alt: "MedVia China medical coordination in Shanghai" }],
   },
-  twitter: { card: "summary_large_image", images: ["/images/shanghai-medical-concierge-hero.png"] },
+  twitter: { card: "summary_large_image", images: ["/images/shanghai-medical-concierge-hero.webp"] },
 };
 
 export const viewport = { width: "device-width", initialScale: 1, themeColor: "#12304A" };
