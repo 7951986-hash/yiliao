@@ -69,3 +69,5 @@ next-env.d.ts
 /public/images/doctors/*.source
 /public/images/shanghai-medical-concierge-hero-mobile.png
 /public/images/shanghai-support/*.png
+
+.vercel
